@@ -2,20 +2,23 @@
 
 When the Truecrypt developers decided to let go further development on Truecrypt I searched for a proper replacement to support encrypted file systems in a lightweight, open source and platform independent manner.
 
-I found out that the virtual file system supports file systems inside (big) files and that loopback devices support adding encryption to VFS. So I decided to give it a try and wrote this shell script helpers to easy the handling a bit.
+I found out that the virtual file system supports file systems inside (big) files and that loopback devices support adding encryption to VFS. So I decided to give it a try and wrote this shell script helpers to ease the handling a bit.
 
 ## Usage
 To use the shell scripts you have to 
+
 1. get them on your computer
 2. copy them to for instance /usr/local/bin
 3. ensure they are executable for at least root
 
 ### Setting up a new encryped drive in a file
 To setup an encrypted drive just 
+
 1. call `sudo encdrive-create.sh`. 
 2. The system will create a new file (per default ~/.encdrivedata, 1 GB size), containing random garbage. If the file exists, the script aborts.
 3. Next an encrypted loopback device will be created. You have to specify a secure password used for encryption and decryption.
 4. Then an ext3 file system  is created within the encrypted loopback device.
+
 That's it, you now can mount the encrypted drive.
 
 ### Mounting an encrypted drive
