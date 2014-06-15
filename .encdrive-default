@@ -1,0 +1,28 @@
+#
+# The file containing the encrypted filesystem
+#
+enc_file=~/.encdrivedata
+
+#
+# The directory used as a mountpoint for the mounted filesystem
+#
+mount_point=~/drive_encoded
+
+
+#
+# user.group used with chown to own the mounted filesystem
+#
+user_group=$SUDO_USER.$SUDO_USER
+
+#
+# Number of blocks to be allocated for disk, each block has 512 bytes, afaik.
+# So we are allocating 1 GB:
+#
+block_count=2097152
+
+
+#
+# Call customized-script to override variables defined here
+#
+test -f ~/.encdrive && . ~/.encdrive
+
