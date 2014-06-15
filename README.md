@@ -8,8 +8,9 @@ I found out that the virtual file system supports file systems inside (big) file
 To use the shell scripts you have to 
 
 1. get them on your computer
-2. copy them to for instance /usr/local/bin
-3. ensure they are executable for at least root
+2. ensure they are executable for at least root
+
+To allow to run the scripts without specifying the whole path, copy them to for instance /usr/local/bin or add the directory they are in to your PATH.
 
 ### Setting up a new encryped drive in a file
 To setup an encrypted drive just 
@@ -28,7 +29,7 @@ To mount the encrypted drive, just call `sudo encdrive-mount.sh`. The system wil
 If you are done with the drive, just call `sudo encdrive-umount.sh` to unmount the filesystem and delete the loopback device.
 
 ## Configuration
-If you don't like the default settings (~/.encdrivedata created woth 1GB mounted into ~/drive_encoded) you can create a file  ~/.encdrive and specify variables like they are specified in the default settings:
+If you don't like the default settings (~/.encdrivedata created with 1GB mounted into ~/drive_encoded) you can create a file  ~/.encdrive and specify some of the following variables that are otherwise specified by the default configuration file:
 ```
 #
 # The file containing the encrypted filesystem
@@ -53,3 +54,21 @@ user_group=$SUDO_USER.$SUDO_USER
 block_count=2097152
 
 ```
+
+## Known and unknown limitations
+
+Currently, the scripts are meant (but not limited) to support one encrypted drive per user. But since the ~/.encdrive configuratino file gets executed during the script execution, you may use whatever algorithm suits you to calculate the variables and thus manage multiple drives.
+For instance you may use command line arguments to distinguish different drives like so:
+```
+enc_file=${1:-~/.encdrivedata}
+mount_point=${2:-$1mp}
+block_count=${2:-2097152}
+```
+And there are some other limitations / requirements, that are currently unknown:
+
+* platform requirements for linux systems,
+* how to achieve cross platform usage of such containers,
+* strength of encryption.
+
+You are welcome to contribute to clarify and avoid these limitations.
+
