@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source $DIR/.encdrive-default
 echo -e "Mounting $enc_file into $mount_point\n"
@@ -12,19 +13,20 @@ fi
 device=$(losetup -f)
 
 echo "Creating mount point directory"
-mkdir -p $mount_point
+mkdir -p "$mount_point"
 
 echo "Preparing loopback $device for $enc_file with encryption, enter passphrase..."
-losetup -e aes $device $enc_file || {
+losetup -e aes $device "$enc_file" || {
   echo "Preparation failed, aborting."
+  exit 1
 }
 
 echo "Mounting filesystem..."
-mount -t ext3 $device $mount_point ||  {
+mount -t ext3 $device "$mount_point" ||  {
   echo "Mounting failed, deleting loopback device"
   losetup -d $device
-  exit 1;
+  exit 1
 }
 echo "Taking ownership for mountpoint as $user_group"
-chown -R $user_group $mount_point
+chown -R $user_group "$mount_point"
 echo "...done"
