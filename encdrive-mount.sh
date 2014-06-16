@@ -1,5 +1,5 @@
 #!/bin/bash
-set -x
+#set -x
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source $DIR/.encdrive-default
 echo -e "Mounting $enc_file into $mount_point\n"
