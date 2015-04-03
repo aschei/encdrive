@@ -57,7 +57,7 @@ block_count=2097152
 
 ## Known and unknown limitations
 
-Currently, the scripts are meant (but not limited) to support one encrypted drive per user. But since the ~/.encdrive configuratino file gets executed during the script execution, you may use whatever algorithm suits you to calculate the variables and thus manage multiple drives.
+Currently, the scripts are meant (but not limited) to support one encrypted drive per user. But since the ~/.encdrive configuration file gets executed during the script execution, you may use whatever algorithm suits you to calculate the variables and thus manage multiple drives.
 For instance you may use command line arguments to distinguish different drives like so:
 ```
 enc_file=${1:-~/.encdrivedata}
