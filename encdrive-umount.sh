@@ -3,6 +3,12 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source $DIR/.encdrive-default
 echo -e "Unmounting $enc_file from $mount_point\n"
 
+fuser $mount_point && {
+  echo "$mount_point is busy. Cannot unmount drive."
+  echo "Consider using 'sudo lsof | grep \"$mount_point\"' or 'fuser $mount_point' to get more information."
+  exit 1
+}
+
 losetup -a | grep "$enc_file"
 
 if [ $? -ne 0 ]; then
