@@ -14,6 +14,7 @@ device=$(losetup -f)
 
 echo "Creating mount point directory"
 mkdir -p "$mount_point"
+modprobe cryptoloop
 
 echo "Preparing loopback $device for $enc_file with encryption, enter passphrase..."
 losetup -e aes $device "$enc_file" || {
