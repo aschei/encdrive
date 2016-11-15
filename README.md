@@ -1,3 +1,5 @@
+This project is discontinued, as loop aes is discontinued in my favorite distro, sorry...
+
 # encdrive - toolset for a Truecrypt replacement
 
 When the Truecrypt developers decided to let go further development on Truecrypt I searched for a proper replacement to support encrypted file systems in a lightweight, open source and platform independent manner.
